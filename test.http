@@ -1,0 +1,48 @@
+###get user information
+GET  http://localhost:5000/users
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NTg5MDc1NywiZXhwIjoxNTY2MjUwNzU3fQ.gZV22XkZcER8QklfXZ7yi2sRU_xI-Rvi9eg03vjO3dE
+
+###login user
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "email": "sam@gmail.com",
+    "password": "jakshflkjsalkjdhfl"
+}
+
+###register user
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "name": "Sam",
+    "email": "sam@gmail.com",
+    "password": "jakshflkjsalkjdhfl"
+}
+
+###get all recipes associated with a certain user
+GET http://localhost:5000/recipes
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NTg5MDc1NywiZXhwIjoxNTY2MjUwNzU3fQ.gZV22XkZcER8QklfXZ7yi2sRU_xI-Rvi9eg03vjO3dE
+
+
+###create a new recipe
+POST http://localhost:5000/recipes
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NjMzNTMwNywiZXhwIjoxNTY2Njk1MzA3fQ.eMz_dyjkDbL64n3KNGZFzy_pIUt3awQw9PbiL7H2Zs0
+Content-Type: application/json
+
+{"body":{
+    "mealId": 1065001
+}}
+
+###delete recipe
+DELETE http://localhost:5000/recipes/5d55aa18b0c30b1a56b9ce6b
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NTg5MDc1NywiZXhwIjoxNTY2MjUwNzU3fQ.gZV22XkZcER8QklfXZ7yi2sRU_xI-Rvi9eg03vjO3dE
+
+###api request
+POST http://localhost:5000/recipes/api
+Content-Type: application/json
+
+{"body":{
+    "searchParams": ["potatoes", "cheese"]
+}}
