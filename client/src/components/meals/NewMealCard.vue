@@ -35,8 +35,7 @@ export default {
       //hardcoded auth token for now
       await axios.post("http://localhost:5000/recipes", {
         headers: {
-          "x-auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NjMzNTMwNywiZXhwIjoxNTY2Njk1MzA3fQ.eMz_dyjkDbL64n3KNGZFzy_pIUt3awQw9PbiL7H2Zs0",
+          "x-auth-token": window.localStorage.getItem("token"),
           "Content-type": "application/json"
         },
         body: {

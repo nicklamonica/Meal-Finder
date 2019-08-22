@@ -39,8 +39,7 @@ export default {
   async created() {
     const response = await axios.get("http://localhost:5000/recipes", {
       headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQ1NTk1YmI5OGZlYjExNTc4OGZkYjcyIn0sImlhdCI6MTU2NjMzNTMwNywiZXhwIjoxNTY2Njk1MzA3fQ.eMz_dyjkDbL64n3KNGZFzy_pIUt3awQw9PbiL7H2Zs0"
+        "x-auth-token": window.localStorage.getItem("token")
       }
     });
     this.savedMeals = response.data;
@@ -53,7 +52,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  align-items: center;
+  align-items: top;
   height: 100%;
   margin: 0 -15px;
   margin-top: 50px;
@@ -62,6 +61,6 @@ export default {
 }
 .card-indv {
   margin: 20px 15px;
-  width: 30vh;
+  width: 33vh;
 }
 </style>

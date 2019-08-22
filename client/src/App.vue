@@ -9,12 +9,14 @@
 
 <script>
 import Navbar from "./components/layouts/Navbar";
+import { mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: {
     Navbar
-  }
+  },
+  actions: mapGetters(["isLoggedIn"])
 };
 </script>
 
