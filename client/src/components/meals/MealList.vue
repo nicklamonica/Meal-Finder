@@ -5,19 +5,13 @@
         <form class="ui form">
           <div class="item">
             <label>Search Your Meals</label>
-            <input
-              v-model="search"
-              type="text"
-              name="search"
-              placeholder="Search Recipes"
-              @keyup="filterMeals"
-            />
+            <input v-model="search" type="text" name="search" placeholder="Search Recipes" />
           </div>
         </form>
       </div>
     </div>
-    <div class="ui cards centered card-list">
-      <div v-for="(meal,index) in savedMeals" :key="index" class="six wide column">
+    <div class="card-list">
+      <div v-for="(meal,index) in filteredMeals" :key="index" class="six wide column">
         <div class="ui card card-indv">
           <div class="image">
             <img :src="meal.imageUrl" />
@@ -74,10 +68,12 @@ export default {
       });
       //filter from list
       this.savedMeals = this.savedMeals.filter(meal => meal._id != id);
-    },
-    filterMeals() {
-      this.savedMeals = this.savedMeals.filter(meal => {
-        return meal.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+    }
+  },
+  computed: {
+    filteredMeals: function() {
+      return this.savedMeals.filter(meal => {
+        return meal.name.toLowerCase().match(this.search.toLowerCase());
       });
     }
   }
@@ -86,20 +82,16 @@ export default {
 
 <style scoped>
 .card-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
   align-items: center;
-  align-content: space-between;
-  height: 100%;
+  justify-items: center;
   margin-top: 50px;
   margin-bottom: 50px;
-  padding: 10px;
 }
 .card-indv {
-  margin: 20px 15px;
-  padding: 0;
-  width: 33vh;
-  vertical-align: middle;
+  max-width: 100%;
   position: relative;
 }
 .card-indv .delete {

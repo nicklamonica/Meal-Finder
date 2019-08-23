@@ -5,10 +5,10 @@
     </router-link>
     <div class="right menu">
       <router-link v-if="isLoggedIn" to="/new" class="item">
-        <i class="save icon"></i> New Recipe
+        <i class="plus icon"></i>Find Recipes
       </router-link>
       <router-link v-if="isLoggedIn" to="/meals" class="item">
-        <i class="plus icon"></i>Saved Recipies
+        <i class="save icon"></i>Saved Recipies
       </router-link>
       <router-link v-if="!isLoggedIn" to="/login" class="item">
         <i class="sign-in icon"></i>Login

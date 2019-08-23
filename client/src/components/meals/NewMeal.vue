@@ -1,28 +1,29 @@
 <template>
-  <div class="ui two column grid ingredient-form">
-    <div class="centered column">
-      <form class="ui form centered" v-on:submit.prevent="genMeals">
-        <div v-for="(ingredient, index) in ingredients" :key="index" class="field">
-          <label for="ingredient">Ingredient Entered:</label>
-          <input type="text" name="ingredient" v-model="ingredients[index]" />
-          <i class="trash icon delete" @click="deleteIngredient(ingredient)"></i>
-        </div>
-        <div class="field">
-          <label for="add-ingredient">Add an ingredient:</label>
-          <input
-            type="text"
-            name="add-ingredient"
-            @keydown.tab.prevent="addIngredient"
-            v-model="entered"
-          />
-          <i class="plus icon add" @click.prevent="addIngredient"></i>
-        </div>
-        <p v-if="alerts">{{alerts}}</p>
-        <button class="ui button">Find new meals</button>
-      </form>
+  <div>
+    <div class="ui two column grid ingredient-form">
+      <div class="centered column">
+        <form class="ui form centered" v-on:submit.prevent="genMeals">
+          <div v-for="(ingredient, index) in ingredients" :key="index" class="field">
+            <label for="ingredient">Ingredient Entered:</label>
+            <input type="text" name="ingredient" v-model="ingredients[index]" />
+            <i class="trash icon delete" @click="deleteIngredient(ingredient)"></i>
+          </div>
+          <div class="field">
+            <label for="add-ingredient">Add an ingredient:</label>
+            <input
+              type="text"
+              name="add-ingredient"
+              @keydown.tab.prevent="addIngredient"
+              v-model="entered"
+            />
+            <i class="plus icon add" @click.prevent="addIngredient"></i>
+          </div>
+          <p v-if="alerts">{{alerts}}</p>
+          <button class="ui button">Find new meals</button>
+        </form>
+      </div>
     </div>
-
-    <div v-if="generatedMeals.length>0" class="three-column">
+    <div v-if="generatedMeals.length>0" class="ui items item-wrapper">
       <div v-for="(meal, index) in generatedMeals" v-bind:key="index">
         <NewMealCard v-bind:meal="meal" />
       </div>
@@ -79,6 +80,16 @@ export default {
 </script>
 
 <style scoped>
+.item-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+  align-items: center;
+  justify-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 form {
   padding: 20px;
   width: 55vh;
@@ -100,11 +111,5 @@ form .field {
   bottom: 14px;
   color: #aaa;
   cursor: pointer;
-}
-
-.three-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 50px;
 }
 </style>
