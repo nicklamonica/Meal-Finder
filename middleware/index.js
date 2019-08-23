@@ -10,6 +10,8 @@ module.exports = (req, res, next) => {
         token = req.body.headers['x-auth-token']
     } else if (req.method == "GET") {
         token = req.headers['x-auth-token']
+    } else if (req.method == "DELETE") {
+        token = req.headers['x-auth-token'];
     }
 
 

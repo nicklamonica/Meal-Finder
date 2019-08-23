@@ -1,38 +1,42 @@
 <template>
-  <form class="ui form">
-    <p v-if="alerts.length > 0">{{alerts.join(" ")}}</p>
-    <div class="field">
-      <label>First Name</label>
-      <input v-model="name" type="text" name="name" placeholder="Enter your full name" required />
+  <div class="ui two column grid">
+    <div class="centered column">
+      <form class="ui form">
+        <p v-if="alerts.length > 0">{{alerts.join(" ")}}</p>
+        <div class="field">
+          <label>First Name</label>
+          <input v-model="name" type="text" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input v-model="email" type="email" name="email" placeholder="Enter your email" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input
+            v-model="password"
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            required
+            minlength="6"
+          />
+        </div>
+        <div class="field">
+          <label>Password Confirm</label>
+          <input
+            v-model="password2"
+            type="password"
+            name="passsword2"
+            placeholder="Re-enter password"
+            required
+            minlength="6"
+          />
+        </div>
+        <button @click.prevent="handleRegister" class="ui button" type="submit">Submit</button>
+      </form>
     </div>
-    <div class="field">
-      <label>Email</label>
-      <input v-model="email" type="email" name="email" placeholder="Enter your email" required />
-    </div>
-    <div class="field">
-      <label>Password</label>
-      <input
-        v-model="password"
-        type="password"
-        name="password"
-        placeholder="Create a password"
-        required
-        minlength="6"
-      />
-    </div>
-    <div class="field">
-      <label>Password Confirm</label>
-      <input
-        v-model="password2"
-        type="password"
-        name="passsword2"
-        placeholder="Re-enter password"
-        required
-        minlength="6"
-      />
-    </div>
-    <button @click.prevent="handleRegister" class="ui button" type="submit">Submit</button>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -71,5 +75,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  padding: 20px;
+  width: 55vh;
+}
+form .field {
+  margin: 20px auto;
+  position: relative;
+}
 </style>

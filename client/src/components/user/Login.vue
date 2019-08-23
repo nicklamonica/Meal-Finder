@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <form class="ui form">
-      <p v-if="alerts.length > 0">{{alerts.join(" ")}}</p>
-      <div class="field">
-        <label>Email</label>
-        <input v-model="email" type="email" name="email" placeholder="Enter your email" required />
-      </div>
-      <div class="field">
-        <label>Password</label>
-        <input
-          v-model="password"
-          type="password"
-          name="password"
-          placeholder="Create a password"
-          required
-          minlength="6"
-        />
-      </div>
-      <button @click.prevent="handleLogin" class="ui button" type="submit">Submit</button>
-    </form>
+  <div class="ui two column grid">
+    <div class="centered column">
+      <form class="ui form">
+        <p v-if="alerts.length > 0">{{alerts.join(" ")}}</p>
+        <div class="field">
+          <label>Email</label>
+          <input v-model="email" type="email" name="email" placeholder="Enter your email" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input
+            v-model="password"
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            required
+            minlength="6"
+          />
+        </div>
+        <button @click.prevent="handleLogin" class="ui button" type="submit">Submit</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -33,11 +35,11 @@ export default {
         email: this.email,
         password: this.password
       });
-      if(response){
+      if (response) {
         this.alerts = response.errors.map(error => error.msg);
         return;
       }
-      this.alerts = []
+      this.alerts = [];
     }
   },
   data() {
@@ -50,5 +52,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  padding: 20px;
+  width: 55vh;
+}
+form .field {
+  margin: 20px auto;
+  position: relative;
+}
 </style>
