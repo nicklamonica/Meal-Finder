@@ -28,7 +28,7 @@ export default {
       //make the loading symbol appear
       this.loading = true;
       //hardcoded auth token for now
-      await axios.post("http://localhost:5000/recipes", {
+      await axios.post("/recipes", {
         headers: {
           "x-auth-token": window.localStorage.getItem("token"),
           "Content-type": "application/json"
@@ -55,7 +55,7 @@ export default {
   position: absolute;
   right: 5px;
   top: 5px;
-  padding: 10px 0px 10px 12px;
+  padding: 10px 0px 10px 14px;
 }
 .image .header {
   position: absolute;

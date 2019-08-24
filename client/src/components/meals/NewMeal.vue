@@ -4,7 +4,7 @@
       <div class="centered column">
         <form class="ui form centered" v-on:submit.prevent="genMeals">
           <div v-for="(ingredient, index) in ingredients" :key="index" class="field">
-            <label for="ingredient">Ingredient Entered:</label>
+            <label for="ingredient">Ingredient Added:</label>
             <input type="text" name="ingredient" v-model="ingredients[index]" />
             <i class="trash icon delete" @click="deleteIngredient(ingredient)"></i>
           </div>
@@ -51,7 +51,7 @@ export default {
   methods: {
     async genMeals() {
       //request generated meals, hardcoded for now
-      const meals = await axios.post("http://localhost:5000/recipes/api", {
+      const meals = await axios.post("/recipes/api", {
         headers: {
           "Content-type": "application/json"
         },

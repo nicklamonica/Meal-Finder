@@ -15,7 +15,7 @@ const actions = {
     login: async ({ commit }, userInfo) => {
         try {
             //get token based on user form input
-            const response = await axios.post('http://localhost:5000/users/login', {
+            const response = await axios.post('/users/login', {
                 headers: {
                     'Content-type': 'application/json'
                 },
@@ -43,7 +43,7 @@ const actions = {
     register: async ({ commit }, userInfo) => {
         try {
             //send request to api and get register token
-            const response = await axios.post('http://localhost:5000/users/register', {
+            const response = await axios.post('/users/register', {
                 headers: {
                     'Content-type': 'application/json'
                 },

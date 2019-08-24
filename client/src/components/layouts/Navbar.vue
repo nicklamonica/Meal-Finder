@@ -1,5 +1,5 @@
 <template>
-  <div class="ui menu">
+  <div class="ui stackable menu">
     <router-link to="/" class="item">
       <i class="utensils icon"></i> Meal Finder
     </router-link>

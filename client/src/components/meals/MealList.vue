@@ -5,7 +5,7 @@
         <form class="ui form">
           <div class="item">
             <label>Search Your Meals</label>
-            <input v-model="search" type="text" name="search" placeholder="Search Recipes" />
+            <input v-model="search" type="text" name="search" placeholder="Search By Name" />
           </div>
         </form>
       </div>
@@ -51,7 +51,7 @@ export default {
     };
   },
   async created() {
-    const response = await axios.get("http://localhost:5000/recipes", {
+    const response = await axios.get("/recipes", {
       headers: {
         "x-auth-token": window.localStorage.getItem("token")
       }
@@ -61,7 +61,7 @@ export default {
   methods: {
     async deleteMeal(id) {
       //delete the meal,
-      await axios.delete(`http://localhost:5000/recipes/${id}`, {
+      await axios.delete(`/recipes/${id}`, {
         headers: {
           "x-auth-token": window.localStorage.getItem("token")
         }
