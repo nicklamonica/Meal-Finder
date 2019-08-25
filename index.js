@@ -13,9 +13,6 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 //routes
-app.get('/', (req, res) => {
-    res.json({ msg: 'home page' })
-});
 app.use('/users', require('./routes/users'));
 app.use('/recipes', require('./routes/recipes'));
 
