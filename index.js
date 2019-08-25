@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === 'production') {
     //use static public folder for frontend
     app.use(express.static(__dirname + '/public/'));
 
-    // // handle spa
-    app.get('/.*/', (req, res) => res.sendFile(__dirname + '/public/index.html'))
+    // handle spa
+    app.get('*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
 
