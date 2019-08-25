@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const connect = require('./config/db');
+const serveStatic = require('serve-static');
+const path = require('path')
 
 const app = express();
 //connect database
@@ -20,12 +22,13 @@ app.use('/recipes', require('./routes/recipes'));
 
 //handle when we are in the production environment
 if (process.env.NODE_ENV === 'production') {
-    console.log('In production environment');
-    //use static public folder for frontend
-    app.use(express.static(__dirname + '/dist/'));
 
-    // handle spa
-    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/dist/index.html'))
+    //use static public folder for frontend
+    app.use('/', serveStatic(path.join(__dirname, '/public')));
+    // app.use(express.static(__dirname + '/public/'));
+
+    // // handle spa
+    // app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 }
 
 
