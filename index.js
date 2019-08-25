@@ -20,12 +20,12 @@ app.use('/recipes', require('./routes/recipes'));
 
 //handle when we are in the production environment
 if (process.env.NODE_ENV === 'production') {
-    console.log('In here');
+    console.log('In production environment');
     //use static public folder for frontend
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + '/dist/'));
 
     // handle spa
-    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/dist/index.html'))
 }
 
 
