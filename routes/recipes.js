@@ -21,7 +21,6 @@ router.get('/', middleware, async (req, res) => {
 //private
 router.post('/', middleware, async (req, res) => {
     try {
-        console.log(req.body.body)
         //get full meal based on key sent in req body
         const mealId = req.body.body.mealId
         //gen query string
@@ -75,14 +74,13 @@ router.delete('/:id', middleware, async (req, res) => {
 router.post('/api', async (req, res) => {
 
     try {
-        //get the recipes by their
-        console.log(req.body.body);
+        //get the recipes by their search params
         const ingredients = req.body.body.searchParams
         let requestString =
             'https://api.spoonacular.com/recipes/findByIngredients?ingredients=';
 
         const ingredientString = ingredients.join(',+')
-        requestString = requestString + ingredientString + '&number=8' + `&apiKey=${keys.foodAPIKey}`;
+        requestString = requestString + ingredientString + '&number=9' + `&apiKey=${keys.foodAPIKey}`;
         const result = await axios.get(requestString);
         res.json(result.data);
     } catch (e) {

@@ -23,6 +23,7 @@
         </form>
       </div>
     </div>
+    <div v-if="alerts">{{saveAlerts}}</div>
     <div v-if="generatedMeals.length>0" class="ui items item-wrapper">
       <div v-for="(meal, index) in generatedMeals" v-bind:key="index">
         <NewMealCard v-bind:meal="meal" />
@@ -34,6 +35,8 @@
 <script>
 import axios from "axios";
 import NewMealCard from "./NewMealCard";
+import { mapGetters } from "vuex";
+import { router } from "../../main.js";
 
 export default {
   name: "NewMeal",
@@ -42,26 +45,38 @@ export default {
       ingredients: [],
       generatedMeals: [],
       alerts: null,
+      saveAlerts: null,
       entered: null
     };
   },
   components: {
     NewMealCard
   },
+  computed: mapGetters(["isLoggedIn"]),
+  created() {
+    if (!this.isLoggedIn) {
+      router.push("/login");
+    }
+  },
   methods: {
     async genMeals() {
-      //request generated meals, hardcoded for now
-      const meals = await axios.post("/recipes/api", {
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: {
-          searchParams: this.ingredients
-        }
-      });
-      //set generated meals to to to meals
-      this.generatedMeals = meals.data;
-      this.ingredients = [];
+      try {
+        //request generated meals, hardcoded for now
+        const meals = await axios.post("/recipes/api", {
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: {
+            searchParams: this.ingredients
+          }
+        });
+        //set generated meals to to to meals
+        this.generatedMeals = meals.data;
+        this.ingredients = [];
+      } catch (error) {
+        this.saveAlerts = "Must be logged in to save a meal";
+        return;
+      }
     },
     addIngredient() {
       if (this.entered) {

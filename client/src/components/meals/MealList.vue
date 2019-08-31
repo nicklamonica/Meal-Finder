@@ -10,6 +10,11 @@
         </form>
       </div>
     </div>
+    <div class="ui container center aligned" v-if="filteredMeals.length==0">
+      <br />
+      <br />Seems You don't have any saved meals...
+      <router-link to="/new">Click here</router-link> to find some.
+    </div>
     <div class="card-list">
       <div v-for="(meal,index) in filteredMeals" :key="index" class="six wide column">
         <div class="ui card card-indv">
@@ -41,22 +46,32 @@
 
 <script>
 import axios from "axios";
+import { router } from "../../main.js";
 
 export default {
   name: "MealList",
   data() {
     return {
       savedMeals: [],
-      search: ""
+      search: "",
+      alerts: ""
     };
   },
   async created() {
-    const response = await axios.get("/recipes", {
-      headers: {
-        "x-auth-token": window.localStorage.getItem("token")
+    try {
+      const response = await axios.get("/recipes", {
+        headers: {
+          "x-auth-token": window.localStorage.getItem("token")
+        }
+      });
+      this.savedMeals = response.data;
+    } catch (error) {
+      if (error.response) {
+        this.alerts = error.response.data;
+        router.push("/login");
+        return;
       }
-    });
-    this.savedMeals = response.data;
+    }
   },
   methods: {
     async deleteMeal(id) {
