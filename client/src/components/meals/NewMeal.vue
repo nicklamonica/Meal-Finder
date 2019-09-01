@@ -117,14 +117,14 @@ form .field {
   position: absolute;
   right: 5px;
   bottom: 14px;
-  color: #aaa;
+  color: red;
   cursor: pointer;
 }
 .ingredient-form .add {
   position: absolute;
   right: 5px;
   bottom: 14px;
-  color: #aaa;
+  color: green;
   cursor: pointer;
 }
 </style>

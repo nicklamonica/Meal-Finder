@@ -38,8 +38,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.item {
+  color: green;
+}
 a.item.router-link-exact-active.router-link-active {
   background-color: #eee;
+}
+i {
+  color: green;
 }
 </style>

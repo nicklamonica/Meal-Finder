@@ -13,7 +13,7 @@
     <div class="ui container center aligned" v-if="filteredMeals.length==0">
       <br />
       <br />Seems You don't have any saved meals...
-      <router-link to="/new">Click here</router-link> to find some.
+      <router-link to="/new">Click here</router-link>to find some.
     </div>
     <div class="card-list">
       <div v-for="(meal,index) in filteredMeals" :key="index" class="six wide column">
@@ -34,7 +34,7 @@
           </div>
           <div class="extra content">
             <a :href="meal.link">
-              <button class="ui button">More info</button>
+              <button class="ui button primary">More info</button>
             </a>
             <i @click="deleteMeal(meal._id)" class="trash alternate icon delete"></i>
           </div>
@@ -114,5 +114,6 @@ export default {
   right: 5px;
   bottom: 14px;
   cursor: pointer;
+  color: red;
 }
 </style>
