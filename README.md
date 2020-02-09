@@ -1,4 +1,4 @@
-# Meal Finder [Click Me](https://mealfinder123.herokuapp.com/)
+# Meal Finder [Demo](https://mealfinder123.herokuapp.com/)
 ---
 ## Description:
 This website helps you find and save recipes based on ingredients you have.
